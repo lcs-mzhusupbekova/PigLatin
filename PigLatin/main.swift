@@ -11,7 +11,24 @@ var countOfExpectedWordsToTranslate = 3
 
 // Write a loop to actually collect the expected count of words to be translated from user
 // e.g.: write the rest of the INPUT section
-
+while true {
+    print("How many words will be provided?")
+    
+    guard let givenInput = readLine() else {
+        // If someone enters nil input, just skip to the next line
+        continue
+    }
+    
+    guard let givenInteger = Int(givenInput) else {
+        continue
+    }
+    
+    if givenInteger < 0 || givenInteger > 10 {
+        continue
+    }
+    countOfExpectedWordsToTranslate = givenInteger
+    break
+}
 
 // PROCESS & OUTPUT
 // Implement the primary logic of the problem here
@@ -34,6 +51,33 @@ for counter in 1...countOfExpectedWordsToTranslate {
     }
     
     // Replace this logic with the correct logic
-    translatedWord = givenInput
+    var vowelFound = false
+    var suffix = ""
+    var prefix = ""
+    for letter in givenInput {
+        // print(letter)
+        if vowelFound == false {
+            switch letter {
+            case "A","U", "I", "E", "O":
+                vowelFound = true
+            default:
+                vowelFound = false
+            }
+            
+            
+        }
+        
+        if vowelFound == true {
+            suffix += String(letter)
+        }
+        if vowelFound == false {
+            prefix += String(letter)
+        }
+        
+        translatedWord = suffix + prefix + "AY"
+        
+        
+    }
+    print(translatedWord)
     
 }
